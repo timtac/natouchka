@@ -1,0 +1,46 @@
+<% include _header %>
+
+<div class="content-wrapper">
+                    <h3 class="text-primary mb-4">Product</h3>
+                    <div class="row mb-2">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h5 class="card-title mb-4">Add Product Info</h5>
+                                    <form  action="/admin/addproduct" method="post" >
+                                        <div class="form-group">
+                                            <label >Product Title</label>
+                                            <input type="text" name="title" class="form-control p-input"  placeholder="Enter Product Name">
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Price</label>
+                                            <input type="text" name="price" class="form-control p-input" placeholder="Price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Category</label>
+                                            <input type="text" name="category" class="form-control p-input" placeholder="Category">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control p-input" name="description" rows="3"></textarea>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                    <div class="form-group">
+                                            <label for="exampleInputFile">Image</label>
+                                            <input type="file" class="form-control-file" name="imagePath" id="file-input" aria-describedby="fileHelp">
+                                            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<% include _footer %>

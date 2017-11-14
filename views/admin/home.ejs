@@ -1,0 +1,31 @@
+<% include _header %>
+<div class="table-responsive">
+<% if (products != null ) { %>
+    <table class="table center-aligned-table">
+        <thead>
+            <tr class="text-primary">
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach( function(product) { %>
+            <tr>
+                
+                    <td><a href="/admin/edit/<%= product._id %>"><%= product.title %></a></td>
+                    <td><%= product.description %></td>
+                    <td><%= product.price %></td>
+                    <td><a href="/admin/delete/<%= product._id %>" class="btn btn-danger">Delete</a></td>
+                
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h3>Store is Empty</h3>
+<% } %>
+</div>
+
+<% include _footer %>
