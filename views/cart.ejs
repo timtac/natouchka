@@ -17,7 +17,6 @@
                   <tr>
                     <th class="goods-page-image">Image</th>
                     <th class="goods-page-description">Description</th>
-                    <th class="goods-page-ref-no">Ref No</th>
                     <th class="goods-page-quantity">Quantity</th>
                     <th class="goods-page-price">Unit price</th>
                     <th class="goods-page-total" colspan="2">Total</th>
@@ -31,16 +30,14 @@
                       <h3><a href="javascript:;"><%= product.item.description %></a></h3>
                       <span><%= product.item.title %></span>
                     </td>
-                    <td class="goods-page-ref-no">
-                      javc2133
-                    </td>
+                    
                     <td class="goods-page-quantity">
                       <div class="product-quantity">
                           <%= product.qty %>
                       </div>
                     </td>
                     <td class="goods-page-price">
-                      <strong><span>€</span><%= product.price %></strong>
+                      <strong><span>€</span><%= product.item.price %></strong>
                     </td>
                     <td class="goods-page-total">
                       <strong><span>€</span><%= product.price %></strong>
