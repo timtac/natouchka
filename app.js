@@ -18,7 +18,9 @@ var setUpPassport = require("./auth/setuppassport");
 
 var app = express();
 
-mongoose.connect(process.env.DB_LINK || "mongodb://timtac:telecom66@22@ds123146.mlab.com:25146/natouchka");
+mongoose.connect(process.env.DB_LINK || "mongodb://timtac:telecom22@ds123146.mlab.com:25146/natouchka");
+//
+//mongodb://timtac:telecom22@cluster0-shard-00-00-wdq6t.mongodb.net:27017,cluster0-shard-00-01-wdq6t.mongodb.net:27017,cluster0-shard-00-02-wdq6t.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
 var port = process.env.PORT || "3000";
 app.set("port", port);
 
