@@ -15,7 +15,6 @@
                 <div class="table-wrapper-responsive">
                 <table summary="Shopping cart">
                   <tr>
-                    <th class="goods-page-image">Image</th>
                     <th class="goods-page-description">Description</th>
                     <th class="goods-page-quantity">Quantity</th>
                     <th class="goods-page-price">Unit price</th>
@@ -23,9 +22,7 @@
                   </tr>
                   <% products.forEach(function(product) { %>
                   <tr>
-                    <td class="goods-page-image">
-                      
-                    </td>
+                    
                     <td class="goods-page-description">
                       <h3><a href="javascript:;"><%= product.item.description %></a></h3>
                       <span><%= product.item.title %></span>
@@ -43,7 +40,7 @@
                       <strong><span>€</span><%= product.price %></strong>
                     </td>
                     <td class="del-goods-col">
-                      <a class="del-goods" href="javascript:;">&nbsp;</a>
+                      <a class="del-goods" href="/remove/<%= product.item._id %>">&nbsp;</a>
                     </td>
                   </tr>
                   <% }) %>
