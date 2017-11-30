@@ -105,7 +105,7 @@
                     <ul class="list-unstyled list-inline pull-right">
                         <!-- <li><a href="">My Account</a></li>
                         <li><a href="">My Wishlist</a></li> -->
-                        <li><a href="">Checkout</a></li>
+                        <li><a href="/checkout">Checkout</a></li>
 <!--                         <li><a href="/logout">Log In</a></li>
  -->                    </ul>
                 </div>
@@ -125,14 +125,18 @@
         <!-- BEGIN CART -->
         <div class="top-cart-block">
           <div class="top-cart-info">
-            <a href="javascript:void(0);" class="top-cart-info-count"></a>
+            <% if(session.cart){ %>
+              <span class="top-cart-info-count"><%= session.cart.totalQty %></span>
+            <% } else { %>
+
+            <% } %>
             <a href="javascript:void(0);" class="top-cart-info-value"></a>
           </div>
           <i class="fa fa-shopping-cart"></i>
                         
           <div class="top-cart-content-wrapper">
             <div class="top-cart-content">
-              <ul class="scroller" style="height: 250px;">
+              <!-- <ul class="scroller" style="height: 250px;">
                 <li>
                   <a href="shop-item.html"><img src="/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
                   <span class="cart-content-count">x 1</span>
@@ -140,10 +144,10 @@
                   <em>$1230</em>
                   <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                 </li>
-              </ul>
+              </ul> -->
               <div class="text-right">
-                <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+                <a href="/shopping-cart" class="btn btn-default">View Cart</a>
+                <a href="/checkout" class="btn btn-primary">Checkout</a>
               </div>
             </div>
           </div>            
@@ -153,9 +157,9 @@
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation">
           <ul>
-            <li class="dropdown">
+            <li>
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Woman 
+                Neck Lace
                 
               </a>
                 
@@ -184,9 +188,9 @@
               </ul>
                END DROPDOWN MENU -->
             </li>
-            <li class="dropdown dropdown-megamenu">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Man
+            <li>
+              <a >
+                Bags
                 
               </a>
               <!-- <ul class="dropdown-menu">
@@ -247,12 +251,12 @@
                 </li>
               </ul> -->
             </li>
-            <li><a href="shop-item.html">Kids</a></li>
-            <li class="dropdown dropdown100 nav-catalogue">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+            <li><a href="">Shoes</a></li>
+            <li>
+              <!-- <a href="javascript:;">
                 New
                 
-              </a>
+              </a> -->
               <!-- <ul class="dropdown-menu">
                 <li>
                   <div class="header-navigation-content">
@@ -302,11 +306,11 @@
                 </li>
               </ul> -->
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+            <li>
+              <!-- <a href="javascript:;">
                 Pages 
                 
-              </a>
+              </a> -->
                 
               <!-- <ul class="dropdown-menu">
                 <li class="active"><a href="shop-index.html">Home Default</a></li>

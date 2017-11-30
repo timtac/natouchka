@@ -1,6 +1,6 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var Cart = require('../models/cart');
+var Cart = require("../models/cart");
 var Product = require('../models/products');
 
 var routeConfig = [
@@ -33,14 +33,14 @@ router.get("/", function(req, res, next) {
 		var productChunks = [];
 		var chunkSize = 1;
 		for (var i = 0; i < prod.length; i += chunkSize){
-			productChunks.push(prod.slice(i, i + chunkSize));
+			productChunks.push(prod.slice(i, 2));
 		}
-		res.render("index", { products: productChunks });
-			
+		
+		res.render("index", { products: prod });
 	});
 });
 
-router.get('/add-to-cart/:id', function( req, res) {
+router.get("/add-to-cart/:id", function( req, res) {
 	var productId = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -49,35 +49,36 @@ router.get('/add-to-cart/:id', function( req, res) {
 			return done(err);
 		}
 
-		cart.add(product, product.id);
+		cart.add(product, product._id);
 		req.session.cart = cart;
-		res.redirect("/")
-	})
+		console.log(req.session.cart);
+		res.redirect("/");
+	});
 });
 
-router.get('/remove/:id', function(req, res, next) {
+router.get("/remove/:id", function(req, res, next) {
 	var productId = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : {});
 
 	cart.remove(productId);
 	req.session.cart = cart;
-	res.redirect('/shopping-cart');
-})
+	res.redirect("/shopping-cart");
+});
 
-router.get('/shopping-cart', function(req, res) {
+router.get("/shopping-cart", function(req, res) {
 	if(!req.session.cart) {
-		return res.render('/cart', {products: null});
+		 res.render("cart", { products: null });
 	}
 	var cart = new Cart(req.session.cart);
-	res.render('cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+	res.render("cart", { products: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
 router.get("/checkout", ensureAuthenticated, function(req, res, next) {
 	if(!req.session.cart) {
-		res.redirect("/");
+		res.redirect("/shopping-cart");
 	}
 	var cart = new Cart(req.session.cart);
-	res.render('checkout', { total: cart.totalPrice});
+	res.render("checkout", { total: cart.totalPrice});
 });
 
 

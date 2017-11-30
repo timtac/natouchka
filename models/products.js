@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 var productSchema = mongoose.Schema({
 	imagePath: {type: String},
 	title: {type: String, required: true},
 	category: { type:String, required: true},
 	description: {type: String, required: true},
-	price: {type: String, required: true}
+	price: {type: Number, required: true}
 });
 
 productSchema.methods.addProduct = function(imagePath, title, category, description, price) {
@@ -34,5 +34,5 @@ productSchema.methods.OneProduct = function(productName) {
 
 }
 
-var Product = mongoose.model('Product', productSchema);
+var Product = mongoose.model("Product", productSchema);
 module.exports = Product;

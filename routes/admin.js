@@ -1,8 +1,8 @@
-var router = require('express').Router();
-var passport = require('passport');
-var Admin = require('../models/admin');
-var Order = require('../models/order');
-var Product = require('../models/products');
+var router = require("express").Router();
+var passport = require("passport");
+var Admin = require("../models/admin");
+var Order = require("../models/order");
+var Product = require("../models/products");
 
 router.use( function(req, res, next) {
 	res.locals.currentAdmin = req.admin;
@@ -11,19 +11,19 @@ router.use( function(req, res, next) {
 	next();
 });
 
-router.get("/home", function(req, res) {
+router.get("/home", ensureAuthenticated, function(req, res, next) {
 	Product.find(function(err, products) {
 		if (err) { next(err);}
 		res.render("admin/home", { products : products });
 	});
 });
 
-router.get('/register', function(req, res) {
+router.get("/register", function(req, res, next) {
 	res.render('admin/register');
 });
 
-router.get('/addproduct', function(req, res) {
-	res.render('admin/addProduct');
+router.get("/addproduct",ensureAuthenticated, function(req, res) {
+	res.render("admin/addProduct");
 });
 
 router.get("/logout", function(req, res) {
@@ -31,7 +31,7 @@ router.get("/logout", function(req, res) {
 	res.redirect("/admin/login");
 });
 
-router.post('/addproduct', function(req, res, next) {
+router.post("/addproduct", function(req, res, next) {
 	var imagePath = req.body.imagePath;
 	var title = req.body.title;
 	var category =req.body.category;
@@ -53,7 +53,7 @@ router.post('/addproduct', function(req, res, next) {
 	});
 });
 
-router.post('/register', function(req, res, next) {
+router.post("/register", function(req, res, next) {
 	
 	console.log(req.body.firstname);
 	var firstname = req.body.firstname;
@@ -79,7 +79,7 @@ router.post('/register', function(req, res, next) {
 	failureFlash: true
 }));
 
-router.get('/delete/:id', function(req, res, next) {
+router.get("/delete/:id", function(req, res, next) {
 	var productId = req.params.id;
 
 	Product.remove({_id : productId}, function(err, doc){
@@ -91,32 +91,42 @@ router.get('/delete/:id', function(req, res, next) {
 	});
 });
 
-router.post('/edit/:id', function(req, res, next) {
+router.post("/edit/:id", function(req, res, next) {
 	var id = req.params.id;
 	Product.findById({ _id:id }, function(err, product) {
 
 	});
 });
 
-router.get("/login", function(req, res) {
-	res.render('admin/login');
+router.get("/login", function(req, res, next) {
+	res.render("admin/login");
 });
 
 router.post("/login", passport.authenticate("login", { 
-	successRedirect: "/admin/addproduct",
 	failureRedirect: "/admin/login",
 	failureFlash: true
-}));
+}), function(req, res, next){
+	if (req.session.oldUrl) {
+		var url = "/admin" + req.session.oldUrl;
+		req.session.oldUrl = null;
+		console.log(req.isAuthenticated());
+		console.log(url);
+		res.redirect(url);
+	} else{
+		res.redirect("/admin/home");
+	}
+});
 
 module.exports = router;
 
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
-		next();
+		return next();
 	}
 	else {
-		
+		req.session.oldUrl = req.url;
+		console.log(req.session.oldUrl);
 		req.flash("info", "You must be logged in to see this page");
 		res.redirect("/admin/login");
 	}
-};
+}

@@ -8,6 +8,9 @@
           <div class="col-md-12 col-sm-12">
             <h1>Shopping cart</h1>
             <div class="goods-page">
+            <% if(products == null){ %>
+                  <div>Your Cart is Empty</div>
+            <% } else { %>
               <div class="goods-data clearfix">
                 <div class="table-wrapper-responsive">
                 <table summary="Shopping cart">
@@ -19,33 +22,34 @@
                     <th class="goods-page-price">Unit price</th>
                     <th class="goods-page-total" colspan="2">Total</th>
                   </tr>
+                  <% products.forEach(function(product) { %>
                   <tr>
                     <td class="goods-page-image">
-                      <a href="javascript:;"><img src="assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
+                      
                     </td>
                     <td class="goods-page-description">
-                      <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
-                      <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                      <em>More info is here</em>
+                      <h3><a href="javascript:;"><%= product.item.description %></a></h3>
+                      <span><%= product.item.title %></span>
                     </td>
                     <td class="goods-page-ref-no">
                       javc2133
                     </td>
                     <td class="goods-page-quantity">
                       <div class="product-quantity">
-                          <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                          <%= product.qty %>
                       </div>
                     </td>
                     <td class="goods-page-price">
-                      <strong><span>$</span>47.00</strong>
+                      <strong><span>€</span><%= product.price %></strong>
                     </td>
                     <td class="goods-page-total">
-                      <strong><span>$</span>47.00</strong>
+                      <strong><span>€</span><%= product.price %></strong>
                     </td>
                     <td class="del-goods-col">
                       <a class="del-goods" href="javascript:;">&nbsp;</a>
                     </td>
                   </tr>
+                  <% }) %>
                 </table>
                 </div>
 
@@ -53,19 +57,20 @@
                   <ul>
                     <li>
                       <em>Sub total</em>
-                      <strong class="price"><span>$</span>47.00</strong>
+                      <strong class="price"><span>€</span><%= totalPrice %></strong>
                     </li>
                     <li>
                       <em>Shipping cost</em>
-                      <strong class="price"><span>$</span>3.00</strong>
+                      <strong class="price"><span>€</span></strong>
                     </li>
                     <li class="shopping-total-price">
                       <em>Total</em>
-                      <strong class="price"><span>$</span>50.00</strong>
+                      <strong class="price"><span>€</span><%= totalPrice %></strong>
                     </li>
                   </ul>
                 </div>
               </div>
+            <% } %>
               <a href="/" class="btn btn-default">Continue shopping <i class="fa fa-shopping-cart"></i></a>
               <a href="/checkout" class="btn btn-primary">Checkout <i class="fa fa-check"></i></a>
             </div>
