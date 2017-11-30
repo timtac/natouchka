@@ -1,28 +1,30 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+var express = require("express");
+var path = require("path");
+// var favicon = require('serve-favicon');
+var logger = require("morgan");
 var assets = require("connect-assets");
 var flash = require("connect-flash");
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("passport");
-var mongoose = require('mongoose');
-var MongoStore = require('connect-mongo')(session);
+var mongoose = require("mongoose");
+var MongoStore = require("connect-mongo")(session);
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var admin = require('./routes/admin');
-var setUpPassport = require('./auth/setuppassport');
+var index = require("./routes/index");
+var users = require("./routes/users");
+var admin = require("./routes/admin");
+var setUpPassport = require("./auth/setuppassport");
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/natouchka');
+mongoose.connect(process.env.DB_LINK || "mongodb://localhost:27017/natouchka");
+var port = process.env.PORT || "3000";
+app.set("port", port);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 setUpPassport();
 
@@ -83,4 +85,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port, function(){
+  console.log("Running");
+});
+// module.exports = app;
