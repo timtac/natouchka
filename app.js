@@ -18,7 +18,7 @@ var setUpPassport = require("./auth/setuppassport");
 
 var app = express();
 
-mongoose.connect(process.env.DB_LINK || "mongodb://localhost:27017/natouchka");
+mongoose.connect(process.env.DB_LINK || "mongodb://timtac:telecom66@22@ds123146.mlab.com:25146/natouchka");
 var port = process.env.PORT || "3000";
 app.set("port", port);
 
