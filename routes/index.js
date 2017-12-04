@@ -40,6 +40,17 @@ router.get("/", function(req, res, next) {
 	});
 });
 
+router.get("/category/:name", function(req, res, next) {
+	var queryParam = req.param.name;
+	Product.find({category: queryParam }, function(err, productsList) {
+		if (err) {
+			return next(null, false, { message: ' An error occur, Pls try again.!'});
+			res.redirect("/");
+		}
+		res.render("category", {products: productsList});
+	});
+});
+
 router.get("/add-to-cart/:id", function( req, res) {
 	var productId = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : {});

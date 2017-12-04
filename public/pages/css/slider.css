@@ -115,18 +115,18 @@
 }
 
 .carousel-slider .carousel-item-four {
-    background: url(../../../assets/pages/img/shop-slider/slide2/22.jpg);
+    background: url(https://s3-us-west-2.amazonaws.com/natouchka/0-3.jpg);
     background-size: cover;
     background-position: center center;
 }
 
 .carousel-slider .carousel-item-five {
-    background: url(../../../assets/pages/img/shop-slider/slide2/22.jpg);
+    background: url(https://s3-us-west-2.amazonaws.com/natouchka/1-4.jpg);
     background-size: cover;
 }
 
 .carousel-slider .carousel-item-six {
-    background: url(../../../assets/pages/img/shop-slider/slide3/bg.jpg);
+    background: url(https://s3-us-west-2.amazonaws.com/natouchka/1-8.jpg);
     background-size: cover;
     background-position: center center;
 }

@@ -22,7 +22,7 @@ mongoose.connect(process.env.DB_LINK || "mongodb://timtac:telecom22@ds125146.mla
 //
 //mongodb://timtac:telecom22@cluster0-shard-00-00-wdq6t.mongodb.net:27017,cluster0-shard-00-01-wdq6t.mongodb.net:27017,cluster0-shard-00-02-wdq6t.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin
 var port = process.env.PORT || "3000";
-app.set("port", port);
+// app.set("port", port);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/admin', admin)
+app.use('/admin', admin);
 app.use('/users', users);
 app.use('/', index);
 
